@@ -1,0 +1,180 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% with phones=allCategory.0 tablets=allCategory.1 audio=allCategory.2 watches=allCategory.3 %}
+
+<!-- The slideshow/carousel -->
+<div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'images/16iphone.carousel.png' %}" class="d-block w-75 mx-auto mt-5" alt="iPhone 16">
+            <div class="carousel-caption">
+                <span>iPhone</span>
+                <h2>Designed to be loved</h2>
+                <p>Take a closer look at our latest models.</p>
+                <div class="price mb-3">Starting from <span>$699</span></div>
+                <a class="shop-btn btn btn-default" href="{% url 'category' phones.pk %}">SHOP NOW <i
+                        class="fa-solid fa-angle-right"></i></a>
+
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/Apple-iPad-Pro.jpg' %}" class="d-block w-100" alt="iPad Pro with Magic Keyboard">
+            <div class="carousel-caption">
+                <span>iPad Pro</span>
+                <h2>Unlock new potential with iPad Pro
+                    <br>and Magic Keyboard
+                </h2>
+                <p>Experience the ultimate portable productivity powerhouse.</p>
+                <div class="price mb-3">Starting from <span>$799</span></div>
+                <a class="shop-btn btn btn-default" href="{% url 'category' tablets.pk %}">SHOP NOW <i
+                        class="fa-solid fa-angle-right"></i></a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/AirPods Max.png' %}" class="d-block w-100" alt="AirPods Max">
+            <div class="carousel-caption">
+                <span>AirPods Max</span>
+                <h2>Unrivaled Sound, Unmatched Comfort</h2>
+                <p>Introducing AirPods Max — a perfect balance of exhilarating high-fidelity audio and the effortless
+                    magic of AirPods.
+                    <br>The ultimate personal listening experience is here.
+                </p>
+                <div class="price mb-3">Starting from <span>$549</span></div>
+                <a class="shop-btn btn btn-default" href="{% url 'category' audio.pk %}">SHOP NOW <i
+                        class="fa-solid fa-angle-right"></i></a>
+
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<!--Slider section end here-->
+<!--Feature section start here-->
+<div class="feature-section section-padding padding-lr">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3 col-sm-6 mt-4">
+                <div class="feature-box">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="fa-regular fa-credit-card"></i>
+                            <h6 class="card-title">Safe Payment</h6>
+                            <p class="card-text">Shop securely with our advanced encryption technology, ensuring your
+                                financial data is protected during every transaction.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 col-sm-6 mt-4">
+                <div class="feature-box">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <h6 class="card-title">Shop With Confidence</h6>
+                            <p class="card-text">Discover top-quality electronics with our satisfaction guarantee,
+                                providing you with a seamless shopping experience every time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 col-sm-6 mt-4">
+                <div class="feature-box">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="fa-solid fa-truck"></i>
+                            <h6 class="card-title">World Wide Delivery</h6>
+                            <p class="card-text">Get your favorite gadgets delivered to your doorstep, anywhere in the
+                                world, with our fast and reliable shipping options.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 col-sm-6 mt-4">
+                <div class="feature-box">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="fa-regular fa-clock"></i>
+                            <h6 class="card-title">24/7 Help Center</h6>
+                            <p class="card-text">We're here for you around the clock—reach out to our dedicated support
+                                team anytime for assistance with your purchases.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--image with text overlay section start here-->
+<div class="img-overlay-section section-padding padding-lr">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mt-sm-3 mb-sm-3">
+                <div class="img-overlay-inner">
+                    <div class="img-box">
+                        <img src="{% static 'images/applewatchb.jpg' %}" alt="Apple Watch">
+                    </div>
+                    <div class="overlay-text">
+                        <div>
+                            <span>GET 50% OFF</span>
+                            <h6>Apple Smart<br> Watches</h6>
+                            <a class="btn btn-lg" href="{% url 'category' watches.pk %}">Shop Now <i
+                                    class="fa-solid fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-sm-3 mb-sm-3">
+                <div class="img-overlay-inner">
+                    <div class="img-box">
+                        <img src="{% static 'images/pink-watch.jpg' %}" alt="Smartwatch with pink band">
+                    </div>
+                    <div class="overlay-text">
+                        <div>
+                            <span>NEW SEASON</span>
+                            <h6>Smartwatches<br>for every style</h6>
+                            <a class="btn btn-lg" href="{% url 'category' watches.pk %}">Shop Now <i
+                                    class="fa-solid fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Featured products (from the database) -->
+<div class="section-padding padding-lr">
+    <div class="container">
+        <div class="section-heading text-center mb-4">
+            <h5>Top deals of the day</h5>
+        </div>
+        <div class="row g-4">
+            {% for product in featured %}
+            <div class="col-6 col-md-4">{% include '_product_card.html' %}</div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Banner -->
+<div class="small-banner-section padding-lr" style="background-image: url({% static 'images/iphone15.png' %});">
+    <div class="small-banner-text-outer">
+        <div class="container">
+            <div class="small-banner-text-inner">
+                <span>NEW IPHONE</span>
+                <h6>iPhone 16 from $699</h6>
+                <a class="btn btn-lg" href="{% url 'category' phones.pk %}">SHOP NOW <i class="fa-solid fa-angle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endwith %}
+{% endblock %}
