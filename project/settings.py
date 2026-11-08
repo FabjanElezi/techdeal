@@ -3,11 +3,12 @@ TechDeal settings.
 
 Local development works with no configuration (SQLite, DEBUG on).
 In production every secret comes from environment variables:
-  DJANGO_SECRET_KEY   required when DEBUG is off
+  DJANGO_SECRET_KEY   optional; derived from DATABASE_URL if missing
   DATABASE_URL        Postgres connection string (e.g. Neon)
   DJANGO_DEBUG        "1" to turn debug on (never in production)
   DJANGO_ALLOWED_HOSTS / DJANGO_CSRF_TRUSTED_ORIGINS  comma separated, optional
 """
+import hashlib
 import os
 from pathlib import Path
 
@@ -18,11 +19,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ON_VERCEL = bool(os.environ.get('VERCEL'))
 DEBUG = os.environ.get('DJANGO_DEBUG', '0' if ON_VERCEL else '1') == '1'
 
+# DJANGO_SECRET_KEY wins if set. Otherwise production derives a stable key
+# from DATABASE_URL, which is already a server-only secret, so a fresh
+# deployment works without pasting another secret into the host.
+_db_url = os.environ.get('DATABASE_URL', '')
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') or (
-    'dev-only-insecure-key-change-me' if DEBUG else None
+    'dev-only-insecure-key-change-me' if DEBUG
+    else (hashlib.sha256(('techdeal-signing-key:' + _db_url).encode()).hexdigest() if _db_url else None)
 )
 if not SECRET_KEY:
-    raise RuntimeError('Set DJANGO_SECRET_KEY in production.')
+    raise RuntimeError('Set DJANGO_SECRET_KEY or DATABASE_URL in production.')
 
 ALLOWED_HOSTS = [h for h in os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',') if h] or [
     'localhost', '127.0.0.1', '.vercel.app',
