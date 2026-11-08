@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% block title %}{{ detailCategory.name }} – TechDeal{% endblock %}
+{% block content %}
+<div class="container section-padding">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ detailCategory.name }}</li>
+        </ol>
+    </nav>
+    <h1 class="page-title">{{ detailCategory.name }}</h1>
+    <p class="text-muted mb-4">{{ products|length }} product{{ products|length|pluralize }}</p>
+    <div class="row g-4">
+        {% for product in products %}
+        <div class="col-6 col-md-4 col-lg-3">{% include '_product_card.html' %}</div>
+        {% empty %}
+        <p>No products in this category yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+{% block title %}Your cart – TechDeal{% endblock %}
+{% block content %}
+<div class="container section-padding">
+    <h1 class="page-title mb-4">Your cart</h1>
+    {% if lines %}
+    <div class="table-responsive">
+        <table class="table align-middle cart-table">
+            <thead>
+                <tr><th>Product</th><th class="text-center">Quantity</th><th class="text-end">Price</th><th></th></tr>
+            </thead>
+            <tbody>
+                {% for line in lines %}
+                <tr>
+                    <td>
+                        <a class="cart-product" href="{% url 'product' line.product.pk %}">
+                            {% if line.product.image %}<img src="{{ line.product.image.url }}" alt="">{% endif %}
+                            <span>{{ line.product.name }}<small>${{ line.product.price|floatformat:0 }} each</small></span>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <div class="qty-control">
+                            <form method="post" action="{% url 'cart_update' line.product.pk %}">{% csrf_token %}
+                                <input type="hidden" name="quantity" value="{{ line.quantity|add:'-1' }}">
+                                <button class="btn btn-outline-secondary btn-sm" aria-label="One less">−</button>
+                            </form>
+                            <span>{{ line.quantity }}</span>
+                            <form method="post" action="{% url 'cart_update' line.product.pk %}">{% csrf_token %}
+                                <input type="hidden" name="quantity" value="{{ line.quantity|add:'1' }}">
+                                <button class="btn btn-outline-secondary btn-sm" aria-label="One more">+</button>
+                            </form>
+                        </div>
+                    </td>
+                    <td class="text-end fw-semibold">${{ line.total|floatformat:0 }}</td>
+                    <td class="text-end">
+                        <form method="post" action="{% url 'cart_remove' line.product.pk %}">{% csrf_token %}
+                            <button class="btn btn-link text-danger p-0" aria-label="Remove {{ line.product.name }}"><i class="fa-regular fa-trash-can"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr><td colspan="2" class="text-end">Total</td><td class="text-end fs-5 fw-bold">${{ total|floatformat:0 }}</td><td></td></tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="d-flex flex-wrap gap-2 justify-content-end">
+        <a href="{% url 'home' %}" class="btn btn-outline-dark">Continue shopping</a>
+        <form method="post" action="{% url 'checkout' %}">{% csrf_token %}
+            <button class="btn btn-dark">Check out (demo)</button>
+        </form>
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <i class="fas fa-bag-shopping"></i>
+        <p>Your cart is empty.</p>
+        <a href="{% url 'home' %}" class="btn btn-dark">Start shopping</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

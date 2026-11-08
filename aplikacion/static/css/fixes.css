@@ -1,0 +1,140 @@
+/* Styles for the parts added in the 2026 clean-up (cart, product pages,
+   accounts). The original look lives in style.css. */
+
+:root {
+  --td-ink: #111;
+  --td-muted: #6b7280;
+  --td-line: #e5e7eb;
+  --td-soft: #f6f7f9;
+}
+
+body { font-family: 'Montserrat', system-ui, sans-serif; }
+
+.demo-ribbon {
+  background: #111;
+  color: #e5e7eb;
+  font-size: 12px;
+  text-align: center;
+  padding: 6px 12px;
+  letter-spacing: 0.02em;
+}
+
+/* Header */
+header.sticky-top { z-index: 1030; }
+.navbar .nav-link i { margin-right: 6px; }
+.navbar .btn-link.nav-link { text-decoration: none; }
+.nav-cart { position: relative; color: var(--td-ink); text-decoration: none; font-size: 18px; }
+.cart-badge {
+  position: absolute; top: -6px; right: -10px;
+  min-width: 18px; height: 18px; padding: 0 5px;
+  border-radius: 9px; background: #dc2626; color: #fff;
+  font-size: 11px; font-weight: 700; line-height: 18px; text-align: center;
+}
+.navbar .nav-link.nav-cart .cart-badge { top: 0; right: -14px; }
+
+/* Headings */
+.page-title { font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--td-ink); }
+.section-title { font-weight: 700; font-size: 1.3rem; }
+.breadcrumb a { color: var(--td-muted); text-decoration: none; }
+
+/* Product cards */
+.product-card-v2 {
+  display: flex; flex-direction: column;
+  background: #fff; border: 1px solid var(--td-line); border-radius: 16px;
+  overflow: hidden; transition: box-shadow .2s ease, transform .2s ease;
+}
+.product-card-v2:hover { box-shadow: 0 12px 30px rgba(0,0,0,.08); transform: translateY(-2px); }
+.pc-img { display: flex; align-items: center; justify-content: center; aspect-ratio: 1 / 1; background: var(--td-soft); padding: 18px; }
+.pc-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.pc-body { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px 16px; flex: 1; }
+.pc-cat { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--td-muted); }
+.pc-name { font-weight: 600; color: var(--td-ink); text-decoration: none; line-height: 1.3; }
+.pc-name:hover { text-decoration: underline; }
+.pc-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 10px; }
+.pc-price { font-weight: 700; font-size: 1.05rem; }
+@media (max-width: 400px) {
+  .pc-foot { flex-direction: column; align-items: stretch; }
+  .pc-foot .btn { width: 100%; }
+}
+
+/* Product page */
+.product-hero-img { background: var(--td-soft); border-radius: 20px; padding: 32px; display: flex; justify-content: center; }
+.product-hero-img img { max-width: 100%; max-height: 460px; object-fit: contain; }
+.product-price-lg { font-size: 2rem; font-weight: 700; }
+.product-perks { list-style: none; padding: 0; color: var(--td-muted); }
+.product-perks li { margin: 6px 0; }
+.product-perks i { width: 22px; color: var(--td-ink); }
+
+/* Cart */
+.cart-table td, .cart-table th { vertical-align: middle; }
+.cart-product { display: flex; align-items: center; gap: 12px; color: var(--td-ink); text-decoration: none; }
+.cart-product img { width: 56px; height: 56px; object-fit: contain; background: var(--td-soft); border-radius: 10px; padding: 4px; }
+.cart-product span { display: flex; flex-direction: column; font-weight: 600; }
+.cart-product small { font-weight: 400; color: var(--td-muted); }
+.qty-control { display: inline-flex; align-items: center; gap: 10px; }
+.qty-control form { margin: 0; }
+.empty-state { text-align: center; padding: 60px 0; color: var(--td-muted); }
+.empty-state i { font-size: 48px; margin-bottom: 12px; }
+
+/* Accounts */
+.auth-card { max-width: 440px; margin: 0 auto; background: #fff; border: 1px solid var(--td-line); border-radius: 18px; padding: 32px; }
+@media (max-width: 480px) { .auth-card { padding: 22px; border: 0; } }
+
+/* Services */
+.service-card { height: 100%; border: 1px solid var(--td-line); border-radius: 16px; padding: 24px; background: #fff; }
+.service-card i { font-size: 26px; margin-bottom: 12px; }
+.service-card h2 { font-size: 1.1rem; font-weight: 700; }
+.service-card p { color: var(--td-muted); margin: 0; }
+
+/* Contact form validation (custom inputs from style.css) */
+.contact-form .is-invalid { border-color: #dc2626 !important; }
+
+/* Footer */
+.footer-note { color: #9ca3af; max-width: 460px; margin-top: 12px; font-size: 14px; }
+
+/* Small screens: keep the original big sections from overflowing */
+img { max-width: 100%; }
+@media (max-width: 576px) {
+  .carousel-caption h2 { font-size: 1.3rem; }
+  .carousel-caption p { display: none; }
+}
+
+/* Promo tiles: the original button had dark text on a dark background
+   (an invisible label) and dark headings sat on dark photos. */
+.img-overlay-inner { border-radius: 16px; }
+.overlay-text { background: linear-gradient(90deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.25) 55%, rgba(0,0,0,0) 100%); }
+.overlay-text span { color: #f3f4f6; }
+.overlay-text h6 { color: #fff; margin-bottom: 24px; }
+.overlay-text a { background-color: #fff; color: #111; border-radius: 999px; padding: 11px 26px; }
+.overlay-text a:hover { background-color: #e5e7eb; color: #111; }
+@media (max-width: 576px) { .overlay-text { padding: 24px; } .overlay-text h6 { font-size: 20px; } }
+
+/* Product name links inherit padding from older rules */
+.pc-name, .pc-cat { padding: 0; margin: 0; }
+
+/* Slideshow: it was fixed to 100vh with the caption pinned to the bottom,
+   which left a large empty gap (worst on phones). Size it to its content
+   and put the text right under the image. */
+.carousel-item { height: auto; }
+.carousel .carousel-caption {
+  position: static; width: min(90%, 760px); margin: 0 auto;
+  padding: 20px 0 48px; color: #111;
+}
+.carousel-item > img { max-height: 70vh; object-fit: contain; }
+.carousel-control-prev-icon, .carousel-control-next-icon { filter: invert(1); }
+.carousel-control-prev, .carousel-control-next { width: 8%; }
+@media (max-width: 576px) {
+  .carousel-caption > span { font-size: 16px; }
+  .carousel-caption .price span { font-size: 20px; }
+}
+
+/* Breadcrumbs on the new pages: plain text, not the dark bar from style.css */
+.section-padding > nav .breadcrumb { background: none; padding: 0; margin-bottom: 12px; font-size: 14px; }
+.section-padding > nav .breadcrumb-item, .section-padding > nav .breadcrumb-item a { color: var(--td-muted); padding: 0; }
+.section-padding > nav .breadcrumb-item.active { color: var(--td-ink); }
+
+/* Long category names in the footer and the contact social row could push
+   past the screen edge on tablets and small phones. */
+.footer-link ul li a { white-space: normal; overflow-wrap: anywhere; }
+.social-links ul { display: flex; flex-wrap: wrap; gap: 12px; }
+.social-links ul li { margin: 0 !important; }

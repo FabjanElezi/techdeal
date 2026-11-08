@@ -1,0 +1,17 @@
+<div class="product-card-v2 h-100">
+    <a class="pc-img" href="{% url 'product' product.pk %}">
+        {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">{% endif %}
+    </a>
+    <div class="pc-body">
+        <span class="pc-cat">{{ product.category.name }}</span>
+        <a class="pc-name" href="{% url 'product' product.pk %}">{{ product.name }}</a>
+        <div class="pc-foot">
+            <span class="pc-price">${{ product.price|floatformat:0 }}</span>
+            <form method="post" action="{% url 'cart_add' product.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button type="submit" class="btn btn-dark btn-sm"><i class="fas fa-cart-plus"></i> Add</button>
+            </form>
+        </div>
+    </div>
+</div>

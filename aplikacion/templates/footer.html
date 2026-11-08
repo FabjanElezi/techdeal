@@ -1,0 +1,47 @@
+<footer>
+    <div class="footer-section">
+        <div class="container">
+            <div class="inner-section">
+                <div class="row">
+                    <div class="col-md-6 col-lg-7">
+                        <div class="footer-bio">
+                            <a class="footer-logo" href="{% url 'home' %}">TechDeal</a>
+                        </div>
+                        <p class="footer-note">
+                            A demo electronics store: browse the catalogue, add products to the cart and check out.
+                            Built with Python and Django as an internship project.
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-lg-5 mt-4 mt-md-0">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="footer-link">
+                                    <div class="footer-link-header"><span>Information</span></div>
+                                    <ul class="list-group">
+                                        <li><a href="{% url 'about' %}">About Us</a></li>
+                                        <li><a href="{% url 'services' %}">Services</a></li>
+                                        <li><a href="{% url 'faq' %}">FAQ</a></li>
+                                        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="footer-link">
+                                    <div class="footer-link-header"><span>Category</span></div>
+                                    <ul class="list-group">
+                                        {% for category in allCategory %}
+                                        <li><a href="{% url 'category' category.pk %}">{{ category.name }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright row">
+                <p><i class="fa-regular fa-copyright"></i> {% now "Y" %} TechDeal · Demo project</p>
+            </div>
+        </div>
+    </div>
+</footer>

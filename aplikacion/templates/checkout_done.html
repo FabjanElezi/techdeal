@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block title %}Order placed – TechDeal{% endblock %}
+{% block content %}
+<div class="container section-padding text-center" style="max-width: 640px;">
+    <i class="fa-regular fa-circle-check fa-3x text-success mb-3"></i>
+    <h1 class="page-title">Thank you!</h1>
+    <p class="lead">This is a demo shop, so no payment was taken and nothing will be shipped.</p>
+    <ul class="list-group text-start my-4">
+        {% for line in lines %}
+        <li class="list-group-item d-flex justify-content-between"><span>{{ line.quantity }} × {{ line.product.name }}</span><span>${{ line.total|floatformat:0 }}</span></li>
+        {% endfor %}
+        <li class="list-group-item d-flex justify-content-between fw-bold"><span>Total</span><span>${{ total|floatformat:0 }}</span></li>
+    </ul>
+    <a href="{% url 'home' %}" class="btn btn-dark">Back to the shop</a>
+</div>
+{% endblock %}
