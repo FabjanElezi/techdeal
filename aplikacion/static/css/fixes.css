@@ -138,3 +138,5 @@ img { max-width: 100%; }
 .footer-link ul li a { white-space: normal; overflow-wrap: anywhere; }
 .social-links ul { display: flex; flex-wrap: wrap; gap: 12px; }
 .social-links ul li { margin: 0 !important; }
+/* style.css paints every <nav> dark grey; the breadcrumb nav should be plain */
+.section-padding > nav[aria-label="breadcrumb"] { background: none; padding: 0; display: block; }
