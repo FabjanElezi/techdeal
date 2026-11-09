@@ -25,7 +25,7 @@ CATALOG = {
     ],
     'Audio & Accessories': [
         ('AirPods Pro 2', '230', 'item/AirPods_pro2.png', 'Active noise cancellation and adaptive audio.', True),
-        ('AirPods Max', '499', 'item/AirPods-Max-black.jpg', 'Over-ear headphones with high-fidelity sound.', False),
+        ('AirPods Max', '499', 'item/AirPods-Max-black.png', 'Over-ear headphones with high-fidelity sound.', False),
         ('HomePod mini', '299', 'item/HomePod_Mini.png', 'Small smart speaker with room-filling sound.', False),
         ('Galaxy Buds 3 Pro', '199', 'item/Galaxy_Buds_3_Pro.png', 'Noise-cancelling earbuds with Galaxy AI features.', False),
         ('Galaxy Ring', '150', 'item/GalaxyRing.png', 'Health tracking in a lightweight ring.', False),
@@ -51,6 +51,13 @@ class Command(BaseCommand):
     @transaction.atomic
     def handle(self, *args, force=False, **options):
         if Product.objects.exists() and not force:
+            # Keep photo paths in step with the files that ship with the app
+            # (e.g. after a photo is re-exported in another format).
+            images = {name: image for items in CATALOG.values() for name, _, image, _, _ in items}
+            for product in Product.objects.filter(name__in=images):
+                if product.image.name != images[product.name]:
+                    product.image = images[product.name]
+                    product.save(update_fields=['image'])
             return
         Product.objects.all().delete()
         Category.objects.all().delete()

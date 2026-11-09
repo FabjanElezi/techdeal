@@ -20,7 +20,7 @@ for deployment in 2026.
 ## Tech stack
 
 Python 3.12 · Django 5.1 · PostgreSQL (Neon) in production, SQLite locally ·
-WhiteNoise · Bootstrap 5 · deployed on Vercel
+WhiteNoise · Bootstrap 5 with one custom stylesheet (`static/css/site.css`) · deployed on Vercel
 
 ## Project structure
 
