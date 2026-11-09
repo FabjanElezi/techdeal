@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 
@@ -15,7 +16,8 @@ def home_view(request):
     featured = Product.objects.filter(featured=True).select_related('category')[:6]
     if not featured:
         featured = Product.objects.select_related('category')[:6]
-    return render(request, 'home.html', {'featured': featured})
+    categories = Category.objects.annotate(n=Count('products')).prefetch_related('products')
+    return render(request, 'home.html', {'featured': featured, 'categories': categories})
 
 
 def category(request, id):

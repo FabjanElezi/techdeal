@@ -81,3 +81,15 @@ class ShopTests(TestCase):
         call_command('seed_catalog', verbosity=0)
         self.assertEqual(Product.objects.count(), 24)
         self.assertEqual(Product.objects.get(name='iPhone 16').price, Decimal('699'))
+
+
+class SeedSyncTests(TestCase):
+    def test_existing_products_get_new_image_paths(self):
+        call_command('seed_catalog', verbosity=0)
+        p = Product.objects.get(name='AirPods Max')
+        p.image = 'item/old-name.jpg'
+        p.save()
+        call_command('seed_catalog', verbosity=0)
+        p.refresh_from_db()
+        self.assertEqual(p.image.name, 'item/AirPods-Max-black.png')
+        self.assertEqual(Product.objects.count(), 24)

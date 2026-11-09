@@ -1,149 +1,32 @@
 {% extends 'index.html' %}
 {% load static %}
-
-
+{% block title %}About – TechDeal{% endblock %}
 {% block content %}
+{% get_media_prefix as MEDIA %}
+<div class="container section-sm">
+    <div class="crumbs"><a href="{% url 'home' %}">Home</a><span>/</span>About</div>
+    <div class="row g-4 g-lg-5 align-items-center">
+        <div class="col-lg-6">
+            <span class="eyebrow">About us</span>
+            <h1 class="page-title mt-1">Good tech, explained simply.</h1>
+            <p class="lead text-muted-2 mt-3">TechDeal brings together the phones, laptops, audio and wearables people actually use, with honest prices and help when you need it.</p>
+            <p class="text-muted-2">We keep the range small on purpose: fewer products, chosen well, each with clear specs, free delivery over $100 and a two-year warranty.</p>
+            <a class="btn btn-accent mt-2" href="{% url 'home' %}#deals">See today's deals</a>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel-soft d-flex align-items-center justify-content-center gap-3" style="min-height: 320px;">
+                <img src="{{ MEDIA }}item/MacBookair.png" alt="" style="width: 55%;">
+                <img src="{{ MEDIA }}item/iphone16pro.png" alt="" style="width: 22%;">
+            </div>
+        </div>
+    </div>
 
-    
-        <!--Banner section-->
-        <div class="header-section2 header-style">
-            <div class="header-inner">
-                <div class="container">
-                    <div class="header-text">
-                        <div class="header-heading">
-                            <h3>About Us</h3>
-                        </div>
-                        <div class="breadcrumb">
-                            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a class="text-decoration-none" href="{% url 'home' %}">Home</a></li>
-                                    <li class="breadcrumb-item active">About</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--About section-->
-        <div class="about-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="about-image">
-                            <img src="{% static 'images/pink-watch.jpg' %}" alt="Smartwatch">
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="about-text-outer">
-                            <div class="about-text-inner">
-                                <span>ABOUT US</span>
-                                <h5>Welcome to TechDeal</h5>
-                                <p>
-                                    At TechDeal, we are passionate about bringing you the latest in cutting-edge electronics. 
-                                    From smartphones to watches, our curated selection of top-quality products is designed 
-                                    to meet all your tech needs. Whether you're a tech enthusiast or just looking for reliable gadgets 
-                                    to enhance your daily life, we've got you covered.
-                                </p>
-                                <p>
-                                    Our commitment to quality and customer satisfaction is at the core of everything we do. 
-                                    Explore our range of products and experience the perfect blend of innovation and performance.
-                                </p>
-                                <a class="shop-btn btn btn-default" href="{% url 'home' %}">SHOP NOW <i class="fa-solid fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12 col-12 mt-md-3 mt-lg-0 mt-sm-3 mt-5">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-6 col-sm-6 col-6">
-                                <div class="about-small-image1">
-                                    <img src="{% static 'images/iphone-14-model-unselect-gallery.jpg' %}" alt="iPhone">
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-6 col-sm-6 col-6">
-                                <div class="about-small-image2">
-                                    <img src="{% static 'images/AirPods Max.png' %}" alt="AirPods Max">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Video section-->
-        <div class="video-section">
-            <div class="container">
-                <div class="video-bg-img" style="background-image: url(images/video-img.JPG);">
-                    <div class="video-overlay"></div>
-                    <div class="video-play-btn">
-                        <a class="video-popup" href="https://youtu.be/eDqfg_LexCQ?si=6WPr4Ku-5M82LMFM"><i class="fa-regular fa-circle-play fa-2xl" style="color: #fff;"></i></a>
-                    </div>
-                    <div class="video-img-overtext">
-                        <h5>Found your Dream Electronic?</h5>
-                        <p>
-                            At TechDeal, we believe in making your tech dreams a reality. Discover the latest gadgets and 
-                            electronics that bring convenience, entertainment, and innovation to your fingertips. Whether you're 
-                            upgrading your home setup or just looking for the perfect device to complement your lifestyle, 
-                            we've got what you need.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Team section-->
-        
-        <!--Features section-->
-        <div class="feature-section padding-lr">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-lg-3 col-sm-6 mt-4 feature-service">
-                        <div class="feature-box">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <i class="fa-regular fa-credit-card fa-lg"></i>
-                                    <h6 class="card-title">Safe Payment</h6>
-                                    <p class="card-text">Shop securely with our advanced encryption technology, ensuring your financial data is protected during every transaction.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 col-sm-6 mt-4 feature-service">
-                        <div class="feature-box">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <i class="fa-solid fa-bag-shopping fa-lg"></i>
-                                    <h6 class="card-title">Shop With Confidence</h6>
-                                    <p class="card-text">Discover top-quality electronics with our satisfaction guarantee, providing you with a seamless shopping experience every time.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 col-sm-6 mt-4 feature-service">
-                        <div class="feature-box">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <i class="fa-solid fa-truck fa-lg"></i>                                    
-                                    <h6 class="card-title">World Wide Delivery</h6>
-                                    <p class="card-text">Get your favorite gadgets delivered to your doorstep, anywhere in the world, with our fast and reliable shipping options.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 col-sm-6 mt-4 feature-service">
-                        <div class="feature-box">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <i class="fa-regular fa-clock fa-lg"></i>                                    
-                                    <h6 class="card-title">24/7 Help Center</h6>
-                                    <p class="card-text">We're here for you around the clock—reach out to our dedicated support team anytime for assistance with your purchases.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+    <div class="row g-3 g-md-4 mt-4">
+        <div class="col-md-4"><div class="panel h-100"><div class="benefit"><i class="fa-solid fa-hand-holding-heart"></i><div><h3>Chosen with care</h3><p>Every product is one we would recommend to a friend.</p></div></div></div></div>
+        <div class="col-md-4"><div class="panel h-100"><div class="benefit"><i class="fa-solid fa-tags"></i><div><h3>Fair prices</h3><p>No hidden fees; the price you see is the price you pay.</p></div></div></div></div>
+        <div class="col-md-4"><div class="panel h-100"><div class="benefit"><i class="fa-solid fa-headset"></i><div><h3>Help after you buy</h3><p>Repairs, trade-in and warranty support in one place.</p></div></div></div></div>
+    </div>
 
-
+    <p class="text-muted-2 small mt-4 mb-0">TechDeal is a demo shop: a portfolio project built with Django during an internship. The shop and team are fictional.</p>
+</div>
 {% endblock %}
