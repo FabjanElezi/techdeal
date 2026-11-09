@@ -16,7 +16,7 @@ def home_view(request):
     featured = Product.objects.filter(featured=True).select_related('category')[:6]
     if not featured:
         featured = Product.objects.select_related('category')[:6]
-    categories = Category.objects.annotate(n=Count('products')).prefetch_related('products')
+    categories = Category.objects.annotate(n=Count('products')).order_by('id').prefetch_related('products')
     return render(request, 'home.html', {'featured': featured, 'categories': categories})
 
 
